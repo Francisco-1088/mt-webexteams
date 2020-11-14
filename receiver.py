@@ -40,6 +40,7 @@ import meraki
 import time
 import shutil
 import datetime
+import pymsteams
 
 # Get the absolute path for the directory where this file is located "here"
 here = os.path.abspath(os.path.dirname(__file__))
@@ -51,12 +52,15 @@ project_root = os.path.abspath(os.path.join(here, ".."))
 sys.path.insert(0, project_root)
 import credentials  # noqa
 
-# WEBEX TEAMS LIBRARY
+# WEBEX TEAMS CLIENT
 teamsapi = WebexTeamsAPI(access_token=credentials.WT_ACCESS_TOKEN)
+# MERAKI DASHBOARD API CLIENT
 dashboard = meraki.DashboardAPI(
 			api_key=credentials.MERAKI_API_KEY,
 			base_url=credentials.MERAKI_BASEURL,
 			print_console=False)
+# MS URL
+msteamsurl = credentials.MS_TEAMS_URL
 
 # Flask App
 app = Flask(__name__)
@@ -86,12 +90,12 @@ def get_webhook_json():
     network_id = webhook_data_json['networkId']
     alert_data.extend([alert_type, alert_id, organization_name, network_name])
     timestamp = webhook_data_json['occurredAt']
-    
+
 
     #Avoid duplicate Alert IDs
     if alert_id not in seen_alerts:
         seen_alerts.append(alert_id)
-        
+
         #Workflow for Sensors
         if alert_type == 'Sensor change detected':
             sensor_value = webhook_data_json['alertData']['triggerData'][0]['trigger']['sensorValue']
@@ -111,12 +115,15 @@ def get_webhook_json():
                     sensor_link=device_url,
                     timestamp=str(datetime.datetime.fromtimestamp(alert_ts))
                     )
-
+                # Send Adaptive Card to Webex Teams
                 msg = teamsapi.messages.create(
                     credentials.WT_ROOM_ID,
                     text='fallback',
                     attachments=[card]
                 )
+
+                # Send Adaptive Card to MS Teams
+                send_msteams_card(card=card, url= msteamsurl)
 
                 # Save msg ID to start thread with Snapshot
                 msg_id = msg.id
@@ -127,7 +134,7 @@ def get_webhook_json():
                 # During which fetching will likely fail
                 # This loops 4 times or exits
                 i = 0
-                while i < 4:
+                while i < 5:
                     try:
                         print('Fetching camera snapshot...')
                         snapshot = dashboard.camera.generateDeviceCameraSnapshot(
@@ -135,7 +142,7 @@ def get_webhook_json():
                     except meraki.exceptions.APIError:
                         time.sleep(30)
                         i = i + 1
-                        if i == 4:
+                        if i == 5:
                             print('Failed to fetch camera snapshot.')
                         continue
                     break
@@ -143,7 +150,7 @@ def get_webhook_json():
                 camera = dashboard.devices.getDevice(
                     serial=credentials.MERAKI_CAMS[0]
                 )
-                
+
                 card = adaptive_cards.snapshot_card(
                     network_name=network_name,
                     camera_name=camera['name'],
@@ -158,12 +165,15 @@ def get_webhook_json():
                     text='fallback', attachments=[card], parentId=msg_id
                 )
 
+                # Send Adaptive Card to MS Teams
+                send_msteams_card(card=card, url= msteamsurl)
+
                 #Workflow for time based alerting
                 elapsed_time = time.time()-start_time
                 if elapsed_time < threshold_time:
                     time_to_go = threshold_time - elapsed_time
                     time.sleep(time_to_go)
-                
+
                 url = f'https://api.meraki.com/api/v1/networks/{network_id}/sensors/stats/latestBySensor?metric=door&serials[]={device_serial}'
                 payload = None
                 headers = {
@@ -190,6 +200,9 @@ def get_webhook_json():
                     text='fallback', parentId=msg_id, attachments=[card]
                 )
 
+                # Send Adaptive Card to MS Teams
+                send_msteams_card(card=card, url= msteamsurl)
+
         """
         if alert_type == 'Motion detected':
             image_url = webhook_data_json['alertData']['imageUrl']
@@ -213,7 +226,7 @@ def get_webhook_json():
             )
             """
 
-            
+
         # Uncomment if you want to get the alert data for any other alerts in your chat
         #else:
         #    teamsapi.messages.create(
@@ -241,6 +254,17 @@ def main(argv):
             secret = arg
 
     print("secret: " + secret)
+
+def send_msteams_card(card,url):
+    card_msteams = {
+        "type":"message",
+        "attachments":[card]
+    }
+    msteams_payload = json.dumps(card_msteams)
+    msteams_headers = {
+        "Content-Type": "application/json"
+    }
+    msteams_msg = requests.request('POST', msteamsurl, headers=msteams_headers, data=msteams_payload)
 
 
 if __name__ == "__main__":

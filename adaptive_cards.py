@@ -37,7 +37,7 @@ def open_door_card(network_name, model_name, sensor_name, timestamp, sensor_link
                                     "text": "Open Door Detected!",
                                     "horizontalAlignment": "Left",
                                     "wrap": True,
-                                    "color": "Light",
+                                    "color": "default",
                                     "size": "Large",
                                     "spacing": "Small"
                                 }
@@ -57,27 +57,27 @@ def open_door_card(network_name, model_name, sensor_name, timestamp, sensor_link
                                     "type": "TextBlock",
                                     "text": "Network Name:",
                                     "weight": "Bolder",
-                                    "color": "Light"
+                                    "color": "default"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": "Sensor Name:",
                                     "weight": "Bolder",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": "Model:",
                                     "weight": "Bolder",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": "Timestamp:",
                                     "weight": "Bolder",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 }
                             ]
@@ -89,12 +89,12 @@ def open_door_card(network_name, model_name, sensor_name, timestamp, sensor_link
                                 {
                                     "type": "TextBlock",
                                     "text": network_name,
-                                    "color": "Light"
+                                    "color": "default"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": sensor_name,
-                                    "color": "Light",
+                                    "color": "default",
                                     "weight": "Lighter",
                                     "spacing": "Small"
                                 },
@@ -102,14 +102,14 @@ def open_door_card(network_name, model_name, sensor_name, timestamp, sensor_link
                                     "type": "TextBlock",
                                     "text": model_name,
                                     "weight": "Lighter",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": timestamp,
                                     "weight": "Lighter",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 }
                             ]
@@ -197,7 +197,7 @@ def snapshot_card(network_name, camera_name, model_name, timestamp, camera_link,
                                     "text": "Meraki MV Snapshot",
                                     "horizontalAlignment": "Left",
                                     "wrap": True,
-                                    "color": "Light",
+                                    "color": "default",
                                     "size": "Large",
                                     "spacing": "Small"
                                 }
@@ -217,27 +217,27 @@ def snapshot_card(network_name, camera_name, model_name, timestamp, camera_link,
                                     "type": "TextBlock",
                                     "text": "Network Name:",
                                     "weight": "Bolder",
-                                    "color": "Light"
+                                    "color": "default"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": "Camera Name:",
                                     "weight": "Bolder",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": "Model:",
                                     "weight": "Bolder",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": "Timestamp:",
                                     "weight": "Bolder",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 }
                             ]
@@ -249,12 +249,12 @@ def snapshot_card(network_name, camera_name, model_name, timestamp, camera_link,
                                 {
                                     "type": "TextBlock",
                                     "text": network_name,
-                                    "color": "Light"
+                                    "color": "default"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": camera_name,
-                                    "color": "Light",
+                                    "color": "default",
                                     "weight": "Lighter",
                                     "spacing": "Small"
                                 },
@@ -262,14 +262,14 @@ def snapshot_card(network_name, camera_name, model_name, timestamp, camera_link,
                                     "type": "TextBlock",
                                     "text": model_name,
                                     "weight": "Lighter",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": timestamp,
                                     "weight": "Lighter",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 }
                             ]
@@ -374,7 +374,7 @@ def door_timer_card(network_name, model_name, sensor_name, timestamp, sensor_lin
                                     "text": "Door open for too long!",
                                     "horizontalAlignment": "Left",
                                     "wrap": True,
-                                    "color": "Light",
+                                    "color": "default",
                                     "size": "Large",
                                     "spacing": "Small"
                                 }
@@ -394,34 +394,34 @@ def door_timer_card(network_name, model_name, sensor_name, timestamp, sensor_lin
                                     "type": "TextBlock",
                                     "text": "Network Name:",
                                     "weight": "Bolder",
-                                    "color": "Light"
+                                    "color": "default"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": "Sensor Name:",
                                     "weight": "Bolder",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": "Model:",
                                     "weight": "Bolder",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": "Initial Alert:",
                                     "weight": "Bolder",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": "Alerting for:",
                                     "weight": "Bolder",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 }
                             ]
@@ -433,12 +433,12 @@ def door_timer_card(network_name, model_name, sensor_name, timestamp, sensor_lin
                                 {
                                     "type": "TextBlock",
                                     "text": network_name,
-                                    "color": "Light"
+                                    "color": "default"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": sensor_name,
-                                    "color": "Light",
+                                    "color": "default",
                                     "weight": "Lighter",
                                     "spacing": "Small"
                                 },
@@ -446,21 +446,21 @@ def door_timer_card(network_name, model_name, sensor_name, timestamp, sensor_lin
                                     "type": "TextBlock",
                                     "text": model_name,
                                     "weight": "Lighter",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": timestamp,
                                     "weight": "Lighter",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 },
                                 {
                                     "type": "TextBlock",
                                     "text": f'{elapsed_time} seconds',
                                     "weight": "Lighter",
-                                    "color": "Light",
+                                    "color": "default",
                                     "spacing": "Small"
                                 }
                             ]
