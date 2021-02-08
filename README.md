@@ -12,23 +12,23 @@ If you do not have a Webex developer account, go ahead and create one [here](htt
 
 Open your Webex App, and create a new Space, that you can call "Meraki Alerts" or similar by clicking the “+” sign in the top bar. Add yourself to the space by typing your Webex email address in the “Add people by name or emai” box.
 
-![image alt text](image_2.png)
+![image alt text](images/image_2.png)
 
 Go to Webex App Hub, and find the [Incoming Webhooks](https://apphub.webex.com/messaging/applications/incoming-webhooks-cisco-systems-38054) integration.
 
-![image alt text](image_3.png)
+![image alt text](images/image_3.png)
 
 Click Connect, and give your Incoming Webhook a name, and associate it with the space you created in the previous step.
 
-![image alt text](image_4.png)
+![image alt text](images/image_4.png)
 
 Copy the Webhook URL for later use.
 
-![image alt text](image_5.png)
+![image alt text](images/image_5.png)
 
 You can quickly test your integration by sending a POST message to the URL with the following format:
 
-![image alt text](image_6.png)
+![image alt text](images/image_6.png)
 
 ## Slack Configuration
 
@@ -38,7 +38,7 @@ Follow the guide [here](https://api.slack.com/messaging/webhooks) to create a ne
 
 Copy your Incoming Webhook URL for later use. You may quickly test it by sending a POST message to it in the following format:
 
-![image alt text](image_7.png)
+![image alt text](images/image_7.png)
 
 ## Meraki Dashboard Configuration
 
@@ -46,11 +46,11 @@ NOTE: You need the **has_beta_api** NFO enabled for this section to work.
 
 Go to Network-wide, Alerts:
 
-![image alt text](image_8.png)
+![image alt text](images/image_8.png)
 
 Scroll down to the Webhooks section, and add your Slack and Webex URLs, and select the appropriate Webhook payload template for each of your two Webhook URLs:
 
-![image alt text](image_9.png)
+![image alt text](images/image_9.png)
 
 You can use the "Send test webhook" option to verify everything is working properly.
 
@@ -60,17 +60,17 @@ Go to Environmental - Overview and select Alert Profiles.
 
 If you haven’t, create a new Alert Profile for Open Doors and add your Webhooks as Recipients for it:
 
-![image alt text](image_10.png)
+![image alt text](images/image_10.png)
 
 You may click the Test button in your Alert Profile to check everything is working properly, and you should receive alerts like these in your Slack and Webex clients:
 
-![image alt text](image_11.png)
+![image alt text](images/image_11.png)
 
-![image alt text](image_12.png)
+![image alt text](images/image_12.png)
 
 Go to your Sensors list and attach the Door Open profile to your MT20s by selecting them, clicking on More Actions and then Manage alert profiles:
 
-![image alt text](image_13.png)
+![image alt text](images/image_13.png)
 
 Next, go to Cameras and for each camera overlooking one of your MT20s, set up some Motion Alerts. Make sure your camera has clear view of the door that will be opened and closed and that few obstacles if any are in place that could obscure the face or features of the person opening and closing those doors.
 
@@ -86,13 +86,13 @@ Keep in mind that:
 
 Define an Area of Interest enclosing the door which you will be monitoring, and optionally enable alerts only on people detection (I’m leaving this disabled).
 
-![image alt text](image_14.png)
+![image alt text](images/image_14.png)
 
 Save your config and repeat for any other cameras overlooking MT20s.
 
 Go back to Alerts and make sure your Custom recipients for motion alerts are set to your Webhooks.
 
-![image alt text](image_15.png)
+![image alt text](images/image_15.png)
 
 NOTE: If you selected your Webhooks as global Default recipients, you do not need to do this.
 
@@ -102,7 +102,7 @@ Now go ahead and start testing your setup by walking in front of the camera and 
 
 You can follow the link to the Image Url in your **Motion detected** alert to see the motion recap event that triggered the alert and who opened the door.
 
-![image alt text](image_18.png)
+![image alt text](images/image_18.png)
 
 # Webex, MS Teams and Slack MT Alerts with Camera Snapshots
 
@@ -110,7 +110,7 @@ If you want to produce an easier to read output for your environment, you can us
 
 With this integration, you will be able to produce notifications for Webex, Slack and MS Teams like in the following examples:
 
-![image alt text](image_19.png)![image alt text](image_20.png)![image alt text](image_21.png)
+![image alt text](images/image_19.png)![image alt text](image_20.png)![image alt text](image_21.png)
 
 ## Webex Setup
 
@@ -124,21 +124,21 @@ Choose Create a Bot, give it an easy to remember name and choose an icon for it 
 
 Open your MS Teams Client and click on "Teams" on the left side:
 
-![image alt text](image_22.png)
+![image alt text](images/image_22.png)
 
 Click on Join or create a team at the bottom, choose From scratch and it can be either Public, Org-wide or Private. Once your team is created, click on Apps at the bottom left, and search for Incoming Webhook, and add the Webhook to your previously created team.
 
-![image alt text](image_23.png)
+![image alt text](images/image_23.png)
 
-![image alt text](image_24.png)
+![image alt text](images/image_24.png)
 
 Click on Set up a Connector, and give your Webhook a Name, and optionally upload an image to it.
 
-![image alt text](image_25.png)
+![image alt text](images/image_25.png)
 
 Click on Create and then take note of the Webhook URL for use later.
 
-![image alt text](image_26.png)
+![image alt text](images/image_26.png)
 
 ## Slack Setup
 
@@ -148,23 +148,23 @@ For the Slack setup, you may follow the guide [in the previous section.](#headin
 
 Tag cameras to be associated with MT20s with appropriately named tags for their location and function.
 
-![image alt text](image_27.png)
+![image alt text](images/image_27.png)
 
 Mirror these tags on the appropriate MT20s in your deployment. For example, the camera looking at the office door with the MT20, should have the same tag as that MT20.
 
-![image alt text](image_28.png)
+![image alt text](images/image_28.png)
 
 Create a new Webhook server on your Network-wide - Alerts page, pointing to the Webhooks receiver.
 
-![image alt text](image_29.png)
+![image alt text](images/image_29.png)
 
 Apply a Door Open alert profile to your MT20s and add your Webhook to it.
 
-![image alt text](image_30.png)
+![image alt text](images/image_30.png)
 
 If you haven’t, generate an API Key under My Profile, and ask a Meraki SE or NSE to enable MT APIs in your organization.
 
-![image alt text](image_31.png)
+![image alt text](images/image_31.png)
 
 ## Spinning up the server and Ngrok
 
@@ -202,17 +202,17 @@ Go into the credentials.py file, and add your Meraki/Webex/MSTeams details:
 
 Start your ngrok server, and copy the https link:
 
-![image alt text](image_32.png)
+![image alt text](images/image_32.png)
 
 Run the receiver.py file with **python receiver.py -s ****_secret_****.**
 
 Go to your Meraki Dashboard Network with your MTs and go to Network-Wide - Alerts - Webhooks. Configure a new Webhook and paste the HTTPS Link from ngrok here.
 
-![image alt text](image_33.png)
+![image alt text](images/image_33.png)
 
 If you hit Send Test Webhook, your Python console should display something like this:
 
-![image alt text](image_34.png)
+![image alt text](images/image_34.png)
 
 From this, you know your receiver is working, and you need to start generating sensor alerts.
 
@@ -222,15 +222,15 @@ If you wish to receive alerts for doors that remain open for too long, you need 
 
 You will start receiving alerts like this one if you leave your door open for too long.
 
-![image alt text](image_35.png)
+![image alt text](images/image_35.png)
 
-![image alt text](image_36.png)
+![image alt text](images/image_36.png)
 
 # Webex, MS Teams and Slack Alerts with Composite Camera images
 
 It’s also possible to receive composite images in your alerts if you’ve set up the Motion Recap functionality as in part I. This part of the code will wait to receive a Motion detected alert, and then the code proceeds to verify the status of the door sensor associated with the camera that sent the alert (via the Tags you set before). If the door status is open, then the Image URL will be downloaded, and a new image will be crafted like the ones below.
 
-![image alt text](image_37.png)![image alt text](image_38.png)![image alt text](image_39.png)
+![image alt text](images/image_37.png)![image alt text](images/image_38.png)![image alt text](images/image_39.png)
 
 # Appendix: Adaptive Cards for Webex and MS Teams and Message Blocks for Slack
 
