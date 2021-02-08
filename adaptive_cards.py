@@ -508,6 +508,7 @@ def door_timer_card(network_name, model_name, sensor_name, timestamp, sensor_lin
     }
 
     return card
+<<<<<<< HEAD
 
 
 def combo_card(network_name, camera_name, model_name, sensor_name, timestamp, camera_link, snapshot_link, sensor_link):
@@ -734,3 +735,5 @@ def combo_card(network_name, camera_name, model_name, sensor_name, timestamp, ca
     }
 
     return card
+=======
+>>>>>>> 44b9f078775d6bbb3903f2675e998c074a46ff9a
