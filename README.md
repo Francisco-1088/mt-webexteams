@@ -2,7 +2,7 @@
 
 # Basic Native API Integration for Webex and Slack
 
-![image alt text](image_0.png)![image alt text](image_1.png)
+![image alt text](image_0.png)![image alt text](images/image_1.png)
 
 This method is the easiest to set up, as it does not require any coding nor servers or serverless applications to work. It is also the simplest and least customizable. This type of integration is not currently compatible with MS Teams, as the Meraki Dashboard only sends Webhooks in customized format to Webex and Slack.
 
