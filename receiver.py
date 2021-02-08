@@ -51,21 +51,16 @@ sys.path.insert(0, project_root)
 import credentials  # noqa
 
 # WEBEX TEAMS CLIENT
-<<<<<<< HEAD
 if credentials.WT_ACCESS_TOKEN != '':
     webexapi = WebexTeamsAPI(access_token=credentials.WT_ACCESS_TOKEN)
     webex_flag = True
 else:
     webex_flag = False
-=======
-teamsapi = WebexTeamsAPI(access_token=credentials.WT_ACCESS_TOKEN)
->>>>>>> 44b9f078775d6bbb3903f2675e998c074a46ff9a
 # MERAKI DASHBOARD API CLIENT
 dashboard = meraki.DashboardAPI(
 			api_key=credentials.MERAKI_API_KEY,
 			base_url=credentials.MERAKI_BASEURL,
 			print_console=False)
-<<<<<<< HEAD
 devices = dashboard.networks.getNetworkDevices(credentials.MERAKI_NET_ID)
 threshold_time=credentials.DOOR_TIMER
 cams = []
@@ -103,10 +98,6 @@ if slackurl != '':
     slack_flag = True
 else:
     slack_flag = False
-=======
-# MS URL
-msteamsurl = credentials.MS_TEAMS_URL
->>>>>>> 44b9f078775d6bbb3903f2675e998c074a46ff9a
 
 # Flask App
 app = Flask(__name__)
@@ -135,12 +126,12 @@ def get_webhook_json():
     network_id = webhook_data_json['networkId']
     alert_data.extend([alert_type, alert_id, organization_name, network_name])
     timestamp = webhook_data_json['occurredAt']
-
+    
 
     #Avoid duplicate Alert IDs
     if alert_id not in seen_alerts:
         seen_alerts.append(alert_id)
-
+        
         #Workflow for Sensors
         if alert_type == 'Sensor change detected':
             sensor_value = webhook_data_json['alertData']['triggerData'][0]['trigger']['sensorValue']
@@ -159,7 +150,6 @@ def get_webhook_json():
                     sensor_name=device_name,
                     model_name=device_model,
                     sensor_link=device_url,
-<<<<<<< HEAD
                     alert_ts=alert_ts
                 )
 
@@ -175,65 +165,8 @@ def get_webhook_json():
                                 snapshot(camera=camera, iso_ts=iso_ts, 
                                     network_name=network_name, alert_ts=alert_ts,
                                     msg_id=msg_id)
-=======
-                    timestamp=str(datetime.datetime.fromtimestamp(alert_ts))
-                    )
-                # Send Adaptive Card to Webex Teams
-                msg = teamsapi.messages.create(
-                    credentials.WT_ROOM_ID,
-                    text='fallback',
-                    attachments=[card]
-                )
-
-                # Send Adaptive Card to MS Teams
-                send_msteams_card(card=card, url= msteamsurl)
-
-                # Save msg ID to start thread with Snapshot
-                msg_id = msg.id
-                # Snapshot timestamp must be in ISO format
-                iso_ts = datetime.datetime.utcfromtimestamp(alert_ts).isoformat() + 'Z'
-
-                # Snapshots referenced with timestamps may take a minute to be available
-                # During which fetching will likely fail
-                # This loops 4 times or exits
-                i = 0
-                while i < 5:
-                    try:
-                        print('Fetching camera snapshot...')
-                        snapshot = dashboard.camera.generateDeviceCameraSnapshot(
-                            serial=credentials.MERAKI_CAMS[0], timestamp=iso_ts)
-                    except meraki.exceptions.APIError:
-                        time.sleep(30)
-                        i = i + 1
-                        if i == 5:
-                            print('Failed to fetch camera snapshot.')
-                        continue
-                    break
-                # Get camera data
-                camera = dashboard.devices.getDevice(
-                    serial=credentials.MERAKI_CAMS[0]
-                )
-
-                card = adaptive_cards.snapshot_card(
-                    network_name=network_name,
-                    camera_name=camera['name'],
-                    model_name=camera['model'],
-                    timestamp=str(datetime.datetime.fromtimestamp(alert_ts)),
-                    camera_link=camera['url'],
-                    snapshot_link=snapshot['url']
-                )
-
-                teamsapi.messages.create(
-                    credentials.WT_ROOM_ID,
-                    text='fallback', attachments=[card], parentId=msg_id
-                )
->>>>>>> 44b9f078775d6bbb3903f2675e998c074a46ff9a
-
-                # Send Adaptive Card to MS Teams
-                send_msteams_card(card=card, url= msteamsurl)
 
                 #Workflow for time based alerting
-<<<<<<< HEAD
                 if threshold_time != 0:
                     door_left_open(
                         start_time=start_time, 
@@ -247,49 +180,11 @@ def get_webhook_json():
                         alert_ts=alert_ts
                     )
 
-=======
-                elapsed_time = time.time()-start_time
-                if elapsed_time < threshold_time:
-                    time_to_go = threshold_time - elapsed_time
-                    time.sleep(time_to_go)
-
-                url = f'https://api.meraki.com/api/v1/networks/{network_id}/sensors/stats/latestBySensor?metric=door&serials[]={device_serial}'
-                payload = None
-                headers = {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json",
-                    "X-Cisco-Meraki-API-Key": f'{credentials.MERAKI_API_KEY}'
-                }
-
-                response = requests.request('GET', url, headers=headers, data = payload)
-
-                elapsed_time = "{:.2f}".format(time.time()-start_time)
-                if json.loads(response.text)[0]['value']==1.0:
-                    card = adaptive_cards.door_timer_card(
-                        network_name=network_name,
-                        model_name=device_model,
-                        sensor_name=device_name,
-                        timestamp=str(datetime.datetime.fromtimestamp(json.loads(response.text)[0]['timestamp'])),
-                        sensor_link=device_url,
-                        elapsed_time=elapsed_time
-                    )
-
-                    teamsapi.messages.create(
-                    credentials.WT_ROOM_ID,
-                    text='fallback', parentId=msg_id, attachments=[card]
-                )
-
-                # Send Adaptive Card to MS Teams
-                send_msteams_card(card=card, url= msteamsurl)
-
-        """
->>>>>>> 44b9f078775d6bbb3903f2675e998c074a46ff9a
         if alert_type == 'Motion detected':
             image_url = webhook_data_json['alertData']['imageUrl']
             alert_ts = webhook_data_json['alertData']['timestamp']
             timestr = time.ctime(alert_ts)
             print(timestr)
-<<<<<<< HEAD
             for cam_tag in webhook_data_json['deviceTags']:
                 for sensor in sensors:
                     for sensor_tag in sensor['tags']:
@@ -305,24 +200,6 @@ def get_webhook_json():
             
 
           
-=======
-            time.sleep(5)
-            print('Storing snapshot locally...')
-            resp = requests.get(image_url, stream=True)
-            filename = f'./snaps/motion_detected_{timestr}.jpg'
-            local_file = open(filename, 'wb')
-            resp.raw.decode_content = True
-            shutil.copyfileobj(resp.raw, local_file)
-            local_file.close()
-            teamsapi.messages.create(
-                credentials.WT_ROOM_ID,
-                text="Meraki Webhook Alert: Motion detected for camera " + network_name + " - " +
-                    camera_name + " - " + camera_url, files=[filename]
-            )
-            """
-
-
->>>>>>> 44b9f078775d6bbb3903f2675e998c074a46ff9a
         # Uncomment if you want to get the alert data for any other alerts in your chat
         #else:
         #    if webex_flag == True:
@@ -352,7 +229,6 @@ def main(argv):
 
     print("secret: " + secret)
 
-<<<<<<< HEAD
 def open_door(network_name, sensor_name, model_name, sensor_link, alert_ts):
     card = adaptive_cards.open_door_card(
         network_name=network_name,
@@ -550,8 +426,6 @@ def door_left_open(start_time, network_id,
 
         
 
-=======
->>>>>>> 44b9f078775d6bbb3903f2675e998c074a46ff9a
 def send_msteams_card(card,url):
     card_msteams = {
         "type":"message",
@@ -563,7 +437,6 @@ def send_msteams_card(card,url):
     }
     msteams_msg = requests.request('POST', msteamsurl, headers=msteams_headers, data=msteams_payload)
 
-<<<<<<< HEAD
 def send_slack_card(card, url):
     card_slack = card
     slack_payload = json.dumps(card_slack)
@@ -571,8 +444,6 @@ def send_slack_card(card, url):
         "Content-Type": "application/json"
     }
     slack_msg = requests.request('POST', slackurl, headers=slack_headers, data=str(card_slack))
-=======
->>>>>>> 44b9f078775d6bbb3903f2675e998c074a46ff9a
 
 if __name__ == "__main__":
     seen_alerts = []
