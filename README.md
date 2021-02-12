@@ -1,4 +1,4 @@
-#### Table of Contents
+# Table of Contents
 [Introduction](#intro)
 [Basic Native API Integration for Webex and Slack](#nativeapi)  
 [Webex, MS Teams and Slack MT Alerts with Camera Snapshots and a Flask Server](#flasksnapshots)  
@@ -8,7 +8,6 @@
 
 <a name="intro"/>
 # Introduction
-
 In this project we explore 4 integrations between Meraki MT20 Door Sensor and Meraki MV Cameras, as well as collaboration applications such as Webex, Slack and MS Teams.
 
 1. **Basic Native API Integration for Webex and Slack:** This one does not need any scripting and simply relies on native capabilities of the Meraki Dashboard and Webex/Slack. Not compatible with MS Teams.
@@ -18,7 +17,6 @@ In this project we explore 4 integrations between Meraki MT20 Door Sensor and Me
 
 <a name="nativeapi"/>
 # Basic Native API Integration for Webex and Slack
-
 ![image alt text](images/image_0.png)
 
 This method is the easiest to set up, as it does not require any coding nor servers or serverless applications to work. It is also the simplest and least customizable. This type of integration is not currently compatible with MS Teams, as the Meraki Dashboard only sends Webhooks in customized format to Webex and Slack.
