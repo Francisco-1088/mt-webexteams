@@ -11,4 +11,5 @@ MERAKI_BASEURL='https://api.meraki.com/api/v1'
 MS_TEAMS_URL=''
 SLACK_URL=''
 #Set to 0 if you don't want time based alerts
-DOOR_TIMER=60
+#Configure a value in seconds to wait after a door is opened
+DOOR_TIMER=0
