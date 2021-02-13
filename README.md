@@ -1,4 +1,4 @@
-# Table of Contents
+# Table of Contents  
 [Introduction](#intro)
 [Basic Native API Integration for Webex and Slack](#nativeapi)  
 [Webex, MS Teams and Slack MT Alerts with Camera Snapshots and a Flask Server](#flasksnapshots)  
@@ -7,7 +7,9 @@
 [Appendix: Adaptive Cards for Webex and MS Teams and Message Blocks for Slack](#appendix)  
 
 <a name="intro"/>
+
 # Introduction
+ 
 In this project we explore 4 integrations between Meraki MT20 Door Sensor and Meraki MV Cameras, as well as collaboration applications such as Webex, Slack and MS Teams.
 
 1. **Basic Native API Integration for Webex and Slack:** This one does not need any scripting and simply relies on native capabilities of the Meraki Dashboard and Webex/Slack. Not compatible with MS Teams.
@@ -16,6 +18,7 @@ In this project we explore 4 integrations between Meraki MT20 Door Sensor and Me
 4. **Webex, MS Teams and Slack Alerts with Composite Camera images:** Uses MV Camera motion alerts as a cue to poll an MT20 sensor, and if it is open, it sends the motion recap image to your favorite collaboration application.
 
 <a name="nativeapi"/>
+
 # Basic Native API Integration for Webex and Slack
 ![image alt text](images/image_0.png)
 
@@ -120,7 +123,8 @@ You can follow the link to the Image Url in your **Motion detected** alert to se
 ![image alt text](images/image_17.png)
 
 <a name="flasksnapshots"/>
-# Webex, MS Teams and Slack MT Alerts with Camera Snapshots and a Flask Server
+
+# Webex, MS Teams and Slack MT Alerts with Camera Snapshots and a Flask Server  
 
 ![image alt text](images/image_18.png)
 
@@ -268,7 +272,8 @@ If you hit Send Test Webhook, your Python console should display something like 
 From this, you know your receiver is working, and you need to start generating sensor alerts.
 
 <a name="timer"/>
-# Webex, MS Teams and Slack Alerts for doors left open for a set amount of time
+
+# Webex, MS Teams and Slack Alerts for doors left open for a set amount of time  
 
 NOTE: For this section to work, you need the has_mt_api NFO enabled.
 
@@ -281,6 +286,7 @@ You will start receiving alerts like this one if you leave your door open for to
 ![image alt text](images/image_37.png)
 
 <a name="motionrecap"/>
+
 # Webex, MS Teams and Slack Alerts with Composite Camera images
 
 ![image alt text](images/image_38.png)
@@ -292,7 +298,8 @@ It’s also possible to receive composite images in your alerts if you’ve set 
 ![image alt text](images/image_39.png)![image alt text](images/image_40.png)![image alt text](images/image_41.png)
 
 <a name="appendix"/>
-# Appendix: Adaptive Cards for Webex and MS Teams and Message Blocks for Slack
+
+# Appendix: Adaptive Cards for Webex and MS Teams and Message Blocks for Slack  
 
 In the previous sections, for Webex and MS Teams you’ve been sending messages to these clients using a specialized format which is called Adaptive Card. This is a specification created by Microsoft, but which is compatible across several messaging platforms. This allows the creation of interactive messages and very visually appealing notifications. You may have seen them before in the Meraki Demo API Platform.
 
