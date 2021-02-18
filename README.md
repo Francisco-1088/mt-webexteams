@@ -1,3 +1,5 @@
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/Francisco-1088/mt-webexteams)
+
 # Table of Contents  
 [Introduction](#intro)
 [Basic Native API Integration for Webex and Slack](#nativeapi)  
