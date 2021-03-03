@@ -62,7 +62,7 @@ Copy your Incoming Webhook URL for later use. You may quickly test it by sending
 
 ## Meraki Dashboard Configuration
 
-NOTE: You need the **has_beta_api** NFO enabled for this section to work.
+NOTE: You need to contact Meraki Support for them to enable direct Webex and Slack Webhook functionality in your network for this section to work.
 
 Go to Network-wide, Alerts:
 
@@ -277,7 +277,7 @@ From this, you know your receiver is working, and you need to start generating s
 
 # Webex, MS Teams and Slack Alerts for doors left open for a set amount of time  
 
-NOTE: For this section to work, you need the has_mt_api NFO enabled.
+NOTE: For this section to work, you need to contact Meraki support to enable MT API functionality.
 
 If you wish to receive alerts for doors that remain open for too long, you need to set up the variable DOOR_TIMER in the **credentials.py** file. If this value is set to 0, the code will skip over this section. Try not to set too large a value, because this means your web server needs to keep the thread running for this amount of time.
 
@@ -293,7 +293,8 @@ You will start receiving alerts like this one if you leave your door open for to
 
 ![image alt text](images/image_38.png)
 
-NOTE: For this section to work, you need the has_mt_api NFO enabled.
+NOTE: For this section to work, you need to contact Meraki support to enable MT API functionality.
+
 
 It’s also possible to receive composite images in your alerts if you’ve set up the Motion Recap functionality as in part I. This part of the code will wait to receive a Motion detected alert, and then the code proceeds to verify the status of the door sensor associated with the camera that sent the alert (via the Tags you set before). If the door status is open, then the Image URL will be downloaded, and a new image will be crafted like the ones below.
 
