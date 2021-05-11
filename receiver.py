@@ -134,12 +134,12 @@ def get_webhook_json():
         
         #Workflow for Sensors
         if alert_type == 'Sensor change detected':
-            sensor_value = webhook_data_json['alertData']['triggerData'][0]['trigger']['sensorValue']
+            sensor_value = webhook_data_json['alertData']['trigger_data'][0]['trigger']['sensor_value']
             device_model = webhook_data_json['deviceModel']
             device_name = webhook_data_json['deviceName']
             device_serial = webhook_data_json['deviceSerial']
             device_url = webhook_data_json['deviceUrl']
-            alert_ts = webhook_data_json['alertData']['triggerData'][0]['trigger']['ts']
+            alert_ts = webhook_data_json['alertData']['trigger_data'][0]['trigger']['ts']
             alert_data.extend([sensor_value, device_model, device_name])
 
             #Workflow for door sensor with Snapshot API
@@ -197,19 +197,7 @@ def get_webhook_json():
                                 timestr=timestr,
                                 image_url=image_url
                             )
-            
-
-          
-        # Uncomment if you want to get the alert data for any other alerts in your chat
-        #else:
-        #    if webex_flag == True:
-            #    webexapi.messages.create(
-            #        credentials.WT_ROOM_ID,
-            #        text="Meraki Webhook Alert: " + webhook_data
-            #    )
-        #print(alert_data)
-
-        # Return success message
+                 
 
     return "WebHook POST Received"
 
