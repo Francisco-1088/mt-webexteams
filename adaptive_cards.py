@@ -1,3 +1,176 @@
+def open_door_cardv2(network_name, model_name, sensor_name, timestamp, sensor_link, snapshot_link=None, video_link=None):
+    card = {
+        "contentType": "application/vnd.microsoft.card.adaptive",
+        "content": {
+            "type": "AdaptiveCard",
+            "body": [
+                {
+                    "type": "ColumnSet",
+                    "columns": [
+                        {
+                            "type": "Column",
+                            "items": [
+                                {
+                                    "type": "Image",
+                                    "style": "Person",
+                                    "url": "https://assets.brandfolder.com/2pkq94n2vgcgj3fs2p8x2x/v/52445274/original/topology-icon-mt10-small.png",
+                                    "size": "Medium",
+                                    "height": "50px"
+                                }
+                            ],
+                            "width": "auto"
+                        },
+                        {
+                            "type": "Column",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "Meraki Dashboard Alert",
+                                    "weight": "Lighter",
+                                    "color": "Accent"
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "weight": "Bolder",
+                                    "text": "Open Door Detected!",
+                                    "horizontalAlignment": "Left",
+                                    "wrap": True,
+                                    "color": "default",
+                                    "size": "Large",
+                                    "spacing": "Small"
+                                }
+                            ],
+                            "width": "stretch"
+                        }
+                    ]
+                },
+                {
+                    "type": "ColumnSet",
+                    "columns": [
+                        {
+                            "type": "Column",
+                            "width": 35,
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": "Network Name:",
+                                    "weight": "Bolder",
+                                    "color": "default"
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "text": "Sensor Name:",
+                                    "weight": "Bolder",
+                                    "color": "default",
+                                    "spacing": "Small"
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "text": "Model:",
+                                    "weight": "Bolder",
+                                    "color": "default",
+                                    "spacing": "Small"
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "text": "Timestamp:",
+                                    "weight": "Bolder",
+                                    "color": "default",
+                                    "spacing": "Small"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Column",
+                            "width": 65,
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": network_name,
+                                    "color": "default"
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "text": f"[{sensor_name}]({sensor_link})",
+                                    "color": "default",
+                                    "weight": "Lighter",
+                                    "spacing": "Small"
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "text": model_name,
+                                    "weight": "Lighter",
+                                    "color": "default",
+                                    "spacing": "Small"
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "text": timestamp,
+                                    "weight": "Lighter",
+                                    "color": "default",
+                                    "spacing": "Small"
+                                }
+                            ]
+                        }
+                    ],
+                    "spacing": "Padding",
+                    "horizontalAlignment": "Center"
+                },
+                {
+                    "type": "ColumnSet",
+                    "columns": [
+                        {
+                            "type": "Column",
+                            "width": "auto",
+                            "items": [
+                                {
+                                    "type": "Image",
+                                    "altText": "",
+                                    "url": "https://assets.brandfolder.com/hmrg83gh2p6wsmjbxvhfhtgx/v/52451031/original/topology-icon-mv12-small.png",
+                                    "size": "Small",
+                                    "width": "15px"
+                                },
+                                {
+                                    "type": "Image",
+                                    "altText": "",
+                                    "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbNqWSFeDK2U7l8x8vT4xT_7bpGG0T4-V8rQ&usqp=CAU",
+                                    "size": "Small",
+                                    "width": "15px"
+                                }
+                            ],
+                            "spacing": "Small"
+                        },
+                        {
+                            "type": "Column",
+                            "width": "auto",
+                            "items": [
+                                {
+                                    "type": "TextBlock",
+                                    "text": f"[Go to Camera Snapshot Link]({snapshot_link})",
+                                    "horizontalAlignment": "Left",
+                                    "size": "Small"
+                                },
+                                {
+                                    "type": "TextBlock",
+                                    "text": f"[Go to Camera Video Link]({video_link})",
+                                    "horizontalAlignment": "Left",
+                                    "size": "Small"
+                                }
+                            ],
+                            "verticalContentAlignment": "Center",
+                            "horizontalAlignment": "Left",
+                            "spacing": "Large"
+                        }
+                    ]
+                }
+            ],
+            "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+            "version": "1.2"
+        }
+    }
+
+    return card
+
 def open_door_card(network_name, model_name, sensor_name, timestamp, sensor_link):
     card = {
         "contentType": "application/vnd.microsoft.card.adaptive",
@@ -492,7 +665,7 @@ def door_timer_card(network_name, model_name, sensor_name, timestamp, sensor_lin
                             "items": [
                                 {
                                     "type": "TextBlock",
-                                    "text": f'["Go to Sensor Dashboard Link"]({sensor_link})',
+                                    "text": f'[Go to Sensor Dashboard Link]({sensor_link})',
                                     "horizontalAlignment": "Left",
                                     "size": "Medium"
                                 }
