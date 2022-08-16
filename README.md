@@ -8,7 +8,7 @@
 [Webex, MS Teams and Slack Alerts with Composite Camera images](#motionrecap)  
 [Appendix: Adaptive Cards for Webex and MS Teams and Message Blocks for Slack](#appendix)  
 
-<a name="intro"/>
+<a name="intro"></a>
 
 # Introduction
  
@@ -19,7 +19,7 @@ In this project we explore 4 integrations between Meraki MT20 Door Sensor and Me
 3. **Webex, MS Teams and Slack Alerts for doors left open for a set amount of time:** Builds on No. 2, but adds a timer after an open door alert is received, and polls the sensor after the specified amount of time and sends a second alert.
 4. **Webex, MS Teams and Slack Alerts with Composite Camera images:** Uses MV Camera motion alerts as a cue to poll an MT20 sensor, and if it is open, it sends the motion recap image to your favorite collaboration application.
 
-<a name="nativeapi"/>
+<a name="nativeapi"></a>
 
 # Basic Native API Integration for Webex and Slack
 ![image alt text](images/image_0.png)
@@ -124,7 +124,7 @@ You can follow the link to the Image Url in your **Motion detected** alert to se
 
 ![image alt text](images/image_17.png)
 
-<a name="flasksnapshots"/>
+<a name="flasksnapshots"></a>
 
 # Webex, MS Teams and Slack MT Alerts with Camera Snapshots and a Flask Server  
 
@@ -273,7 +273,7 @@ If you hit Send Test Webhook, your Python console should display something like 
 
 From this, you know your receiver is working, and you need to start generating sensor alerts.
 
-<a name="timer"/>
+<a name="timer"></a>
 
 # Webex, MS Teams and Slack Alerts for doors left open for a set amount of time  
 
@@ -287,7 +287,7 @@ You will start receiving alerts like this one if you leave your door open for to
 
 ![image alt text](images/image_37.png)
 
-<a name="motionrecap"/>
+<a name="motionrecap"></a>
 
 # Webex, MS Teams and Slack Alerts with Composite Camera images
 
@@ -300,7 +300,7 @@ It’s also possible to receive composite images in your alerts if you’ve set 
 
 ![image alt text](images/image_39.png)![image alt text](images/image_40.png)![image alt text](images/image_41.png)
 
-<a name="appendix"/>
+<a name="appendix"></a>
 
 # Appendix: Adaptive Cards for Webex and MS Teams and Message Blocks for Slack  
 
